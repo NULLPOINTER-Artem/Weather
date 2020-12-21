@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(to bottom,rgba(36,130,155,1) 0%, rgba(37,65,125,1) 100%) no-repeat;
+    position: relative;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    color: aliceblue;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding-top: 200px;
+
+    .content-citiesAndImage-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .dropdown-wrapper {
+            text-align: center;
+            padding: 45px;
+        }
+
+        .icon-wrapper {
+            text-align: center;
+        }
+    }
+
+    .temp-wrapper {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+
+        .temp {
+            text-align: center;
+            
+            b {
+                font-size: 1.5rem;
+            }
+
+        }
+
+        .additionForTemp {
+            text-align: center;
+            font-weight: 300;
+        }
+    } 
+}

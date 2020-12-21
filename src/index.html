@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div class="content-wrapper">
+            <div class="content-citiesAndImage-wrapper">
+                <div class="dropdown-wrapper">
+                    <component-select id="city">
+                        <option slot="selected">Tokyo</option>
+                        <option slot="item">Kiev</option>
+                        <option slot="item">Moscow</option>
+                        <option slot="item">Minsk</option>
+                        <option slot="item">London</option>
+                        <option slot="item">Paris</option>
+                        <option slot="item">New York</option>
+                        <option slot="last-item">Berlin</option>
+                    </component-select>
+                </div>
+                <div class="icon-wrapper">
+
+                </div>
+            </div>
+            <div class="temp-wrapper">
+                <div class="temp">
+                    <p></p>
+                </div>
+                <div class="additionForTemp">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <template id="modalWindow">
+        <div class="content">
+            <div class="time"></div>
+            <div class="location"></div>
+    
+            <div class="temperature">
+                <div class="icon-wrapper"></div>
+                <div class="temp"></div>
+            </div>
+    
+            <div class="detailsOfWeather">
+                <p class="description"></p>
+                <div class="details">
+                    <ul class="details-list">
+                    </ul>
+                </div>
+            </div>  
+        </div>
+
+        <style>
+            .time {
+                color: #f85527;
+                margin-bottom: 7px;
+            }
+
+            .location {
+                font-weight: 700;
+                font-size: 1.5rem;
+            }
+
+            .temperature {
+                position: relative;
+                margin-top: 17px;
+                font-size: 2rem;
+                display: inline-flex;
+                width: 200px;
+            }
+
+            .temperature > .temp {
+                position: absolute;
+                top: -28px;
+                left: 50px;
+            }
+
+            :host {
+                position: absolute;
+                top: calc(100% - 250px);
+                left: calc(100% - 365px);
+
+                display: block;
+                padding: 15px;
+                background-color: rgba(0, 0, 0, 0.25);
+
+                color: aliceblue;
+                border-radius: 20px;
+                width: 350px;
+                font-size: 12px;
+
+                opacity: 0;
+                transition: opacity 1s;
+            }
+
+            .details-list {
+                display: flex;
+                flex-wrap: wrap;
+                list-style: none;
+                border-left: 1px solid #f85527;
+                margin-bottom: 0;
+            }
+
+            .details-list li {
+                position: relative;
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: auto;
+                width: 33.334%;
+
+                margin-bottom: 5px;
+            }
+
+            .details-list li > img {
+                position: absolute;
+            }
+        </style>
+    </template>
+
+    <template id="dropdown">
+        <style>
+            :host {
+                display: block;
+                width: 150px;
+            }
+
+            .dropdown {
+                position: relative;
+                cursor: pointer;
+                top: 0;
+                left: 50%;
+            }
+
+            .closed {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .dropdown-list {
+                position: absolute;
+                top: 110%;
+                left: 0;
+                right: 0;
+            }
+
+            ::slotted([slot="selected"]),
+            ::slotted([slot="item"]),
+            ::slotted([slot="last-item"]) {
+                font-weight: 500;
+                font-size: 1.2rem;
+            }
+
+            ::slotted([slot="selected"]) {
+                border-top-right-radius: 8px;
+                border-top-left-radius: 8px;
+
+                border-top: 1px solid aliceblue;
+                border-right: 1px solid aliceblue;
+                border-left: 1px solid aliceblue;
+
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            ::slotted([slot="item"]:hover),
+            ::slotted([slot="last-item"]:hover) {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            ::slotted([slot="item"]) {
+                border-top: 1px solid aliceblue;
+                border-right: 1px solid aliceblue;
+                border-left: 1px solid aliceblue;
+            }
+
+            ::slotted([slot="last-item"]) {
+                border-top: 1px solid aliceblue;
+                border-right: 1px solid aliceblue;
+                border-left: 1px solid aliceblue;
+
+                border-bottom: 1px solid aliceblue;
+                border-bottom-right-radius: 8px;
+                border-bottom-left-radius: 8px;
+            }
+        </style>
+        <div class="dropdown">
+            <div class="dropdown-select">
+                <slot name="selected"></slot>
+            </div>
+            <div class="dropdown-list closed">
+                <div class="dropdown-list-item">
+                    <slot name="item"></slot>
+                    <slot name="last-item"></slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
